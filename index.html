@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>After an Accident · New England Collision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brick: #8B1E1E;
+    --brick-deep: #5C1212;
+    --brick-mid: #9A2424;
+    --charcoal: #2B2B2B;
+    --bone: #F7F1EA;
+    --muted: #7A736C;
+    --soft: #8A837C;
+    --line: rgba(43, 43, 43, 0.08);
+    --u: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bone);
+    color: var(--charcoal);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  /* .screen rules extended below for transitions */
+
+  header {
+    position: relative;
+    padding: calc(var(--u)*5) calc(var(--u)*3) calc(var(--u)*5.25);
+    background:
+      radial-gradient(120% 80% at 50% -20%, rgba(255,255,255,0.18), transparent 55%),
+      radial-gradient(90% 60% at 50% 120%, rgba(0,0,0,0.18), transparent 58%),
+      linear-gradient(168deg, #A32828 0%, var(--brick) 40%, var(--brick-deep) 100%);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+  }
+  header.compact { padding: calc(var(--u)*3.5) calc(var(--u)*3) calc(var(--u)*4); }
+  header::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: soft-light;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  header::after {
+    content: "";
+    position: absolute; inset: 0;
+    box-shadow: inset 0 -36px 56px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.16);
+    pointer-events: none;
+  }
+  .logo {
+    position: relative; z-index: 1;
+    height: 58px; width: auto;
+    margin: 0 auto calc(var(--u)*2.5);
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.22));
+  }
+  header.compact .logo { height: 44px; margin-bottom: calc(var(--u)*2); }
+  .years {
+    position: relative; z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto calc(var(--u)*3);
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.88);
+  }
+  .years::before, .years::after {
+    content: "";
+    width: 22px; height: 1px;
+    background: rgba(255,255,255,0.35);
+  }
+  header h1 {
+    position: relative; z-index: 1;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  header.compact h1 { font-size: 24px; letter-spacing: 0.1em; }
+  header .sub {
+    position: relative; z-index: 1;
+    margin-top: calc(var(--u)*1.5);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.88);
+  }
+
+  main {
+    flex: 1;
+    padding: 0 calc(var(--u)*3) calc(var(--u)*3.5);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .call-wrap { position: relative; margin-top: calc(var(--u)*-2.75); z-index: 2; }
+  .call {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-decoration: none;
+    color: var(--charcoal);
+    border-radius: 18px;
+    padding: 17px 18px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FBF7F2 100%);
+    border: 1px solid rgba(255,255,255,0.95);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,1) inset,
+      0 -1px 0 rgba(43,43,43,0.04) inset,
+      0 0 0 1px rgba(139,30,30,0.10),
+      0 16px 40px -12px rgba(92,18,18,0.42),
+      0 6px 16px rgba(43,43,43,0.06);
+    position: relative;
+  }
+  .call::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 10px; bottom: 10px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: linear-gradient(180deg, var(--brick-mid), var(--brick-deep));
+  }
+  .call .phone-badge {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, var(--brick-mid), var(--brick-deep));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 6px 14px rgba(92,18,18,0.35);
+  }
+  .call .phone-badge svg { width: 18px; height: 18px; }
+  .call .label { text-align: left; }
+  .call .label .micro {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin-bottom: 3px;
+  }
+  .call .label strong {
+    display: block;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .call .label .num {
+    display: block;
+    margin-top: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .call .chev { width: 20px; height: 20px; opacity: 0.35; }
+
+  .ask {
+    margin-top: calc(var(--u)*4.5);
+    text-align: center;
+    padding: 0 calc(var(--u)*1);
+  }
+  .ask .eyebrow {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin-bottom: calc(var(--u)*1.75);
+  }
+  .ask h2 {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+  .ask p {
+    margin-top: calc(var(--u)*1.5);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--soft);
+  }
+  .ask .go {
+    display: inline-block;
+    margin-top: calc(var(--u)*3.5);
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(180deg, var(--brick-mid), var(--brick-deep));
+    padding: 14px 28px;
+    border-radius: 999px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 10px 24px -8px rgba(92,18,18,0.45);
+  }
+
+  .bridge {
+    margin-top: calc(var(--u)*4);
+    text-align: center;
+    padding: 0 calc(var(--u)*2);
+  }
+  .bridge .rule {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: calc(var(--u)*1.75);
+  }
+  .bridge .rule::before, .bridge .rule::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139,30,30,0.35), transparent);
+  }
+  .bridge .rule i {
+    display: block; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--brick); opacity: 0.55;
+  }
+  .bridge p {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brick);
+  }
+
+  .foot { margin-top: auto; padding-top: calc(var(--u)*3); text-align: center; }
+  .trust {
+    font-size: 11.5px; font-weight: 500; letter-spacing: 0.03em;
+    color: var(--soft); line-height: 1.55;
+  }
+  .trust .dot {
+    display: inline-block; width: 3px; height: 3px; border-radius: 50%;
+    background: currentColor; opacity: 0.4; margin: 0 8px 2px; vertical-align: middle;
+  }
+  .more {
+    display: inline-block;
+    margin-top: calc(var(--u)*2.25);
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--charcoal); text-decoration: none;
+    padding: 10px 22px; border-radius: 999px;
+    border: 1px solid rgba(43,43,43,0.18);
+  }
+
+  .q-progress {
+    display: flex; gap: 6px; justify-content: center;
+    margin: calc(var(--u)*3) 0 calc(var(--u)*1);
+  }
+  .q-progress i {
+    width: 22px; height: 3px; border-radius: 2px;
+    background: rgba(139,30,30,0.15);
+  }
+  .q-progress i.on { background: var(--brick); }
+
+  .q-body {
+    flex: 1;
+    padding: calc(var(--u)*2) calc(var(--u)*3) calc(var(--u)*3.5);
+    display: flex; flex-direction: column;
+  }
+  .q-body h2 {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    text-align: center;
+    margin: calc(var(--u)*2) 0 calc(var(--u)*1);
+  }
+  .q-body .hint {
+    text-align: center;
+    font-size: 14px;
+    color: var(--soft);
+    line-height: 1.45;
+    margin-bottom: calc(var(--u)*3);
+  }
+  .answers {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .answers button, .answers a.answer {
+    appearance: none; border: none; cursor: pointer;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    color: var(--charcoal);
+    background: linear-gradient(180deg, #fff, #FBF7F2);
+    border-radius: 16px;
+    padding: 18px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    box-shadow:
+      0 1px 0 #fff inset,
+      0 0 0 1px rgba(43,43,43,0.06),
+      0 8px 20px -10px rgba(43,43,43,0.18);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .answers button .k, .answers a.answer .k {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brick);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .answers button svg, .answers a.answer svg {
+    width: 18px; height: 18px; opacity: 0.3;
+  }
+  .answers a.answer.primary, .answers button.primary,
+  .answers a.answer.urgent {
+    background: linear-gradient(180deg, var(--brick-mid), var(--brick-deep));
+    color: #fff;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.2) inset,
+      0 12px 28px -10px rgba(92,18,18,0.5);
+  }
+  .answers a.answer.primary .k, .answers button.primary .k,
+  .answers a.answer.urgent .k { color: rgba(255,255,255,0.85); }
+  .answers a.answer.primary svg, .answers button.primary svg,
+  .answers a.answer.urgent svg { opacity: 0.85; stroke: #fff; }
+
+  .guidance, .panel {
+    display: none;
+    margin-top: calc(var(--u)*2.5);
+    padding: 16px 18px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--charcoal);
+  }
+  .guidance.show, .panel.show { display: block; }
+  .guidance strong, .panel strong {
+    display: block;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin-bottom: 8px;
+  }
+  .guidance ul, .panel ul { padding-left: 18px; margin-top: 6px; }
+  .guidance li, .panel li { margin-bottom: 6px; }
+  .guidance .disclaimer, .panel .disclaimer {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--soft);
+    font-style: italic;
+  }
+  .guidance .continue, .panel .continue {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(180deg, var(--brick-mid), var(--brick-deep));
+    padding: 12px 22px;
+    border-radius: 999px;
+  }
+
+  /* Total-loss expert look screen */
+  .tl-hero {
+    text-align: center;
+    padding: calc(var(--u)*2) 4px calc(var(--u)*1);
+  }
+  .tl-hero .mark {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin-bottom: calc(var(--u)*2);
+  }
+  .tl-hero h2 {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    margin-bottom: calc(var(--u)*1.5);
+  }
+  .tl-hero p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--soft);
+  }
+
+  .checklist {
+    display: none;
+    margin-top: calc(var(--u)*2.5);
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .checklist.show { display: block; }
+  .checklist .head {
+    padding: 14px 16px 10px;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brick);
+  }
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-top: 1px solid var(--line);
+    min-height: 52px;
+    cursor: pointer;
+  }
+  .check input {
+    width: 20px; height: 20px;
+    accent-color: var(--brick);
+    flex-shrink: 0;
+  }
+  .check span { font-size: 15px; color: var(--charcoal); }
+
+  .reassure {
+    display: none;
+    margin-top: calc(var(--u)*2.5);
+    text-align: center;
+    padding: 18px 16px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+  }
+  .reassure.show { display: block; }
+  .reassure .mark {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin-bottom: 8px;
+  }
+  .reassure p { font-size: 15px; line-height: 1.45; }
+
+  .q-foot {
+    margin-top: auto;
+    padding-top: calc(var(--u)*3);
+    text-align: center;
+  }
+  .back {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--soft);
+    text-decoration: none;
+  }
+  .q-call {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--brick);
+    text-decoration: none;
+  }
+  .chev { width: 18px; height: 18px; opacity: 0.3; }
+
+  /* Focus: brick, never blue */
+  :focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
+  a:focus, button:focus { outline-color: var(--brick); }
+
+  .screen {
+    display: none;
+    flex-direction: column;
+    min-height: 100dvh;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .screen.active { display: flex; opacity: 1; transform: none; }
+  .screen.is-in { animation: screenIn 400ms cubic-bezier(.22,.61,.36,1) forwards; }
+  .screen.is-out {
+    display: flex !important;
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    z-index: 5;
+    pointer-events: none;
+    animation: screenOut 320ms cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes screenOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-8px); }
+  }
+  .answers button, .answers a.answer {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .screen.is-in .answers > *,
+  .screen.active.settled .answers > * {
+    animation: cardIn 380ms cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  .screen.is-in .answers > *:nth-child(1), .screen.active.settled .answers > *:nth-child(1) { animation-delay: 40ms; }
+  .screen.is-in .answers > *:nth-child(2), .screen.active.settled .answers > *:nth-child(2) { animation-delay: 90ms; }
+  .screen.is-in .answers > *:nth-child(3), .screen.active.settled .answers > *:nth-child(3) { animation-delay: 140ms; }
+  .screen.is-in .answers > *:nth-child(4), .screen.active.settled .answers > *:nth-child(4) { animation-delay: 190ms; }
+  .screen.is-in .answers > *:nth-child(5), .screen.active.settled .answers > *:nth-child(5) { animation-delay: 240ms; }
+  .screen.is-in .answers > *:nth-child(6), .screen.active.settled .answers > *:nth-child(6) { animation-delay: 290ms; }
+  .screen.is-in .answers > *:nth-child(7), .screen.active.settled .answers > *:nth-child(7) { animation-delay: 340ms; }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answers button.is-pressing, .answers a.answer.is-pressing {
+    transform: scale(0.985) !important;
+    transition: transform 120ms ease-out;
+    opacity: 1 !important;
+  }
+  .q-progress i {
+    transition: background-color 350ms cubic-bezier(.22,.61,.36,1), transform 350ms cubic-bezier(.22,.61,.36,1);
+  }
+  .q-progress i.on { transform: scaleY(1.15); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .screen, .screen.is-in, .screen.is-out,
+    .answers button, .answers a.answer,
+    .q-progress i {
+      animation: none !important;
+      transition: opacity 160ms linear !important;
+      transform: none !important;
+    }
+    .screen.active, .answers button, .answers a.answer { opacity: 1 !important; }
+  }
+
+  .save-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 4px;
+    margin: calc(var(--u)*0.5) 0 calc(var(--u)*0.5);
+  }
+  .save-btn {
+    appearance: none; border: none; background: transparent;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 8px 4px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .save-btn svg {
+    width: 16px; height: 16px;
+    stroke: var(--brick);
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .save-btn.saved { color: var(--brick); }
+  .save-btn.saved svg { fill: rgba(139,30,30,0.12); }
+
+  .resume {
+    display: none;
+    margin-top: calc(var(--u)*3);
+    padding: 18px 18px 16px;
+    background: linear-gradient(180deg, #fff, #FBF7F2);
+    border-radius: 16px;
+    border: 1px solid rgba(139,30,30,0.12);
+    box-shadow: 0 8px 24px -12px rgba(92,18,18,0.25);
+    text-align: left;
+  }
+  .resume.show { display: block; }
+  .resume .eyebrow {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--brick); margin-bottom: 8px;
+  }
+  .resume h3 {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 600; font-size: 18px;
+    letter-spacing: 0.02em; line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .resume p {
+    font-size: 13px; color: var(--soft); line-height: 1.45;
+    margin-bottom: 14px;
+  }
+  .resume .actions { display: flex; flex-direction: column; gap: 10px; }
+  .resume .continue {
+    display: block; text-align: center; text-decoration: none;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #fff;
+    background: linear-gradient(180deg, var(--brick-mid), var(--brick-deep));
+    padding: 13px 18px; border-radius: 999px;
+  }
+  .resume .row {
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    align-items: center; margin-top: 4px;
+  }
+  .resume .linkish {
+    font-size: 12px; font-weight: 500; color: var(--charcoal);
+    text-decoration: none; border-bottom: 1px solid rgba(43,43,43,0.2);
+    padding-bottom: 1px; background: none; border-top:0; border-left:0; border-right:0;
+    cursor: pointer; font-family: Inter, system-ui, sans-serif;
+  }
+  .resume .sms {
+    font-size: 12px; font-weight: 500; color: var(--brick);
+    text-decoration: none;
+  }
+  .resume .hint-install {
+    margin-top: 12px; font-size: 11.5px; color: var(--soft); line-height: 1.4;
+    margin-bottom: 0;
+  }
+  #home:has(#resume-card.show) .ask .go { opacity: 0.55; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 28px;
+    transform: translateX(-50%) translateY(12px);
+    max-width: 320px; width: calc(100% - 40px);
+    background: var(--charcoal); color: var(--bone);
+    font-size: 13px; font-weight: 500; line-height: 1.35;
+    text-align: center; padding: 12px 16px;
+    border-radius: 12px; z-index: 50;
+    opacity: 0; pointer-events: none;
+    transition: opacity 280ms ease, transform 280ms cubic-bezier(.22,.61,.36,1);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  body { position: relative; }
+
+
+  /* Sticky quiet call */
+  .sticky-call {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 14px;
+    background: rgba(247,241,234,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(43,43,43,0.06);
+  }
+  .screen.active:not(#home) .sticky-call { display: flex; }
+  .sticky-call .sc-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--soft);
+    letter-spacing: 0.01em;
+  }
+  .sticky-call .sc-label strong {
+    display: block;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+  .sticky-call a.sc-btn {
+    flex-shrink: 0;
+    text-decoration: none;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(180deg, var(--brick-mid), var(--brick-deep));
+    padding: 9px 14px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px -4px rgba(92,18,18,0.4);
+  }
+  .sticky-call .sc-after {
+    display: none;
+    font-size: 11px;
+    color: var(--brick);
+    font-weight: 500;
+    line-height: 1.3;
+    max-width: 58%;
+  }
+  body.after-hours .sticky-call .sc-after { display: block; }
+  body.after-hours .sticky-call .sc-label { display: none; }
+
+  .summary-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(139,30,30,0.10);
+    box-shadow: 0 8px 24px -14px rgba(92,18,18,0.28);
+    padding: 18px 18px 16px;
+    text-align: left;
+  }
+  .summary-card .eyebrow {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--brick); margin-bottom: 8px;
+  }
+  .summary-card h3 {
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-weight: 600; font-size: 20px;
+    letter-spacing: 0.02em; line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .summary-card ul {
+    list-style: none; padding: 0; margin: 0 0 14px;
+  }
+  .summary-card li {
+    font-size: 14px; line-height: 1.45; color: var(--charcoal);
+    padding: 8px 0;
+    border-top: 1px solid var(--line);
+  }
+  .summary-card li:first-of-type { border-top: none; }
+  .summary-card .fit {
+    font-size: 14px; line-height: 1.5; color: var(--charcoal);
+    background: rgba(139,30,30,0.05);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .summary-card .fit strong {
+    display: block;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--brick);
+    margin-bottom: 6px; font-weight: 600;
+  }
+  .joe-sign {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--soft);
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .joe-sign b {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--charcoal);
+    display: block;
+    margin-top: 4px;
+    font-family: Oswald, Impact, Arial Narrow, sans-serif;
+    letter-spacing: 0.04em;
+    font-size: 13px;
+  }
+  .close-ways { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+  .obj-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .obj-list button {
+    appearance: none; border: none; background: transparent;
+    text-align: left; cursor: pointer;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 13px; font-weight: 500; color: var(--charcoal);
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(43,43,43,0.10);
+  }
+  .obj-list button:hover { border-color: rgba(139,30,30,0.25); }
+  .after-hours-note {
+    display: none;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--soft);
+    text-align: center;
+  }
+  body.after-hours .after-hours-note { display: block; }
+  .screen#home .sub.empathy { opacity: 0.95; }
+
+</style>
+</head>
+<body>
+<!-- sticky call injected per screen by JS -->
+
+
+
+  <div id="home" class="screen active">
+    <header>
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="248" height="54" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+      <p class="sub empathy">I’m sorry this happened. Let’s take it one step at a time—you don’t have to figure this out alone.</p>
+    </header>
+    <main>
+      <div class="call-wrap">
+        <a class="call" href="tel:+12033896400">
+          <span class="phone-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="label">
+            <span class="micro">Tap to call</span>
+            <strong>Call NEC</strong>
+            <span class="num">(203) 389-6400</span>
+          </span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="ask">
+        <div class="eyebrow">A few calm questions</div>
+        <h2>Is everyone okay?</h2>
+        <p>If you’re shaken or stressed, that’s normal. We’ll go one gentle step at a time.</p>
+        <a class="go" href="#q1" data-go="q1">I’m ready</a>
+        <p class="joe-sign">Here when you need us.<b>Joe, New England Collision</b></p>
+      </div>
+
+      <div id="resume-card" class="resume">
+        <div class="eyebrow">Saved progress</div>
+        <h3>Welcome back. Pick up where you left off?</h3>
+        <p id="resume-meta">Your answers are still here on this phone.</p>
+        <div class="actions">
+          <a class="continue" href="#resume" id="resume-continue">Continue</a>
+          <div class="row">
+            <a class="sms" id="resume-sms" href="#">Text it to myself</a>
+            <button type="button" class="linkish" id="resume-restart">Start over</button>
+          </div>
+          <p class="hint-install">Tip: on iPhone, tap Share → Add to Home Screen to keep this app handy.</p>
+        </div>
+      </div>
+
+      <div class="bridge">
+        <div class="rule" aria-hidden="true"><i></i></div>
+        <p>Your car. Your choice of shop.</p>
+      </div>
+      <div class="foot">
+        <p class="trust">465 Derby Ave, West Haven<span class="dot"></span>Mon–Fri 8:00 AM–4:30 PM</p>
+        <a class="more" href="#q-scenario" data-go="q-scenario">More help</a>
+      </div>
+    </main>
+  </div>
+
+  <div id="q1" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <h2>Is everyone okay?</h2>
+      <p class="hint">Take a breath. There’s no wrong answer—just what’s true right now.</p>
+      <div class="answers">
+        <button type="button" data-next="q-year">
+          <span><span class="k">Yes</span>Everyone’s okay</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <a class="answer urgent" href="tel:911">
+          <span><span class="k">Call 911</span>Someone is hurt</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-reveal="q1-guide">
+          <span><span class="k">Not sure</span>I need a quick check</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div id="q1-guide" class="guidance" role="status">
+        <strong>Right now</strong>
+        Check for injuries. Call 911 if anyone is hurt. If it is safe, move out of traffic and turn on your hazards.
+        <a class="continue" href="#q-year" data-go="q-year">Continue</a>
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#home" data-go="home">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="q-year" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+      <h2>What year is your car?</h2>
+      <p class="hint">A rough answer is fine. No pressure.</p>
+      <div class="answers">
+        <button type="button" data-year="new" data-next="q-damage">
+          <span><span class="k">2015 or newer</span>Late-model vehicle</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-year="old" data-next="q-damage">
+          <span><span class="k">Older</span>Before 2015</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-year="unsure" data-next="q-damage">
+          <span><span class="k">Not sure</span>I’ll confirm with NEC</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q1" data-go="q1">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="q-damage" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <h2>How bad does the damage look?</h2>
+      <p class="hint">Just what you can see. You don’t need to be an expert.</p>
+      <div class="answers">
+        <button type="button" data-damage="minor" data-route="after-damage">
+          <span><span class="k">Minor</span>Looks driveable</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-damage="major" data-route="after-damage">
+          <span><span class="k">Major</span>Airbags went off or it’s not drivable</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-damage="unsure" data-route="after-damage">
+          <span><span class="k">Not sure</span>Hard to tell from here</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-year" data-go="q-year">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="q-tl" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+      <h2>Has your insurer mentioned a total loss?</h2>
+      <p class="hint">It’s okay if you’re not sure yet. A lot of people aren’t.</p>
+      <div class="answers">
+        <button type="button" data-next="tl-where">
+          <span><span class="k">Yes</span>They’ve mentioned it</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="tl-where">
+          <span><span class="k">No</span>Not that I’ve heard</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="tl-where">
+          <span><span class="k">Not yet</span>Too early to know</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-damage" data-go="q-damage">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="tl-where" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <h2>Do you know where your car should sit while they decide?</h2>
+      <p class="hint">Where it sits matters—and you get a say.</p>
+      <div class="answers">
+        <button type="button" data-next="tl-protect">
+          <span><span class="k">Wherever they say</span>Wherever the tow or insurer says</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="tl-protect">
+          <span><span class="k">I’m not sure</span>I don’t know yet</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="tl-protect">
+          <span><span class="k">Somewhere I trust</span>I want it somewhere I trust</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-tl" data-go="q-tl">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="tl-protect" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <div class="tl-hero">
+        <div class="mark">While they decide</div>
+        <h2>You can have it brought to NEC.</h2>
+        <p>Your car stays secure and is evaluated at a licensed body shop, not a tow yard.</p>
+      </div>
+      <div class="panel show">
+        <strong>Your rights in Connecticut</strong>
+        <ul>
+          <li>You have the right to choose the licensed repair shop that fixes your car (CGS 38a-354).</li>
+          <li>You can’t be required to use the tow company for repairs (CT DMV Towing Bill of Rights).</li>
+        </ul>
+        <p class="disclaimer">General info, not legal advice.</p>
+      </div>
+      <div class="answers" style="margin-top:16px">
+        <button type="button" class="primary" data-next="summary" data-fit="totalloss">
+          <span><span class="k">Yes</span>Show me where I stand</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="q-objections">
+          <span><span class="k">I have a concern</span>Something’s still unclear</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#tl-where" data-go="tl-where">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="tl-look" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <div class="tl-hero">
+        <div class="mark">Before anyone decides</div>
+        <h2>Your car may need an expert look before anyone decides it’s totaled.</h2>
+        <p>Next: where your car sits while they decide.</p>
+      </div>
+      <div class="answers" style="margin-top:8px">
+        <button type="button" data-next="tl-where" class="primary">
+          <span><span class="k">Continue</span>Where should it sit?</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <a class="answer" href="tel:+12033896400">
+          <span><span class="k">Or call now</span>(203) 389-6400</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-tl" data-go="q-tl">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="q2" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+      <h2>Is your car safe to drive?</h2>
+      <p class="hint">No pressure. Whatever’s true for you is the right answer.</p>
+      <div class="answers">
+        <button type="button" data-next="q3">
+          <span><span class="k">Yes</span>It can be driven</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="q3">
+          <span><span class="k">No</span>It needs a tow</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="q3">
+          <span><span class="k">Not sure</span>I’d rather ask NEC</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-damage" data-go="q-damage">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="q3" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <h2>Did you get photos?</h2>
+      <p class="hint">A few clear photos help later. We’ll remind you what to grab.</p>
+      <div class="answers">
+        <button type="button" data-next="q-scenario">
+          <span><span class="k">Yes</span>I already have them</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-reveal="q3-guide">
+          <span><span class="k">Not yet</span>Show me what to shoot</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="q-scenario">
+          <span><span class="k">Can’t right now</span>I’ll do it when I can</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div id="q3-guide" class="guidance" role="status">
+        <strong>Photograph</strong>
+        Take photos of all cars, the damage, the plates and the scene.
+        <a class="continue" href="#q-scenario" data-go="q-scenario">Continue</a>
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q2" data-go="q2">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="q-scenario" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Does anything else fit?</h2>
+      <p class="hint">If something else is weighing on you, tap it. Otherwise we’ll keep going.</p>
+      <div class="answers">
+        <button type="button" data-next="br-hitrun">
+          <span><span class="k">Hit-and-run</span>Or the other driver has no insurance</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="br-towyard">
+          <span><span class="k">Tow yard</span>Car is already towed, after hours or weekend</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="br-insurer">
+          <span><span class="k">Their shop</span>Insurer or tow wants their own shop</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="br-rental">
+          <span><span class="k">Rental</span>I may need a rental car</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="br-deer">
+          <span><span class="k">Animal</span>Deer or other animal</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="br-parked">
+          <span><span class="k">Parked</span>My parked car was hit</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-next="q4">
+          <span><span class="k">None of these</span>Continue</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q3" data-go="q3">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="br-hitrun" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Was it a hit-and-run, or is the other driver uninsured?</h2>
+      <p class="hint">You’re not alone in this.</p>
+      <div class="panel show">
+        <strong>Next step</strong>
+        Call NEC and we’ll walk you through what to gather next—including the police report number when you have it.
+        
+      </div>
+      <div class="answers" style="margin-top:16px">
+        <a class="answer primary" href="tel:+12033896400">
+          <span><span class="k">Call NEC</span>We’ll walk you through it</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-next="summary">
+          <span><span class="k">Next</span>Show me where I stand</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-next="q5" data-open-checklist="1">
+          <span><span class="k">Checklist</span>Show my notes</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-scenario" data-go="q-scenario">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="br-towyard" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Is your car at a tow yard?</h2>
+      <p class="hint">After hours and weekends are common.</p>
+      <div class="panel show">
+        <strong>Next step</strong>
+        Call NEC and we’ll walk you through getting the car to the shop you choose.
+        
+      </div>
+      <div class="answers" style="margin-top:16px">
+        <a class="answer primary" href="tel:+12033896400">
+          <span><span class="k">Call NEC</span>We’ll walk you through it</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-next="summary">
+          <span><span class="k">Next</span>Show me where I stand</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-next="q5" data-open-checklist="1">
+          <span><span class="k">Checklist</span>Show my notes</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-scenario" data-go="q-scenario">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="br-insurer" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Were you told the car has to go to a certain shop?</h2>
+      <p class="hint">You’re allowed to choose. I’ll show you why.</p>
+      <div class="panel show">
+        <strong>Your rights in Connecticut</strong>
+        <ul>
+          <li>You have the right to choose the licensed repair shop that fixes your car (CGS 38a-354).</li>
+          <li>You can’t be required to use the tow company for repairs (CT DMV Towing Bill of Rights).</li>
+        </ul>
+        <p class="disclaimer">General info, not legal advice.</p>
+      </div>
+      <div class="answers" style="margin-top:16px">
+        <a class="answer primary" href="tel:+12033896400">
+          <span><span class="k">Call NEC</span>We’ll walk you through it</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-next="q4">
+          <span><span class="k">Continue</span>Next question</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-scenario" data-go="q-scenario">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="br-rental" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Do you need a rental while the car is down?</h2>
+      <p class="hint">One call can start that conversation.</p>
+      <div class="panel show">
+        <strong>Next step</strong>
+        Call NEC and we’ll walk you through rental options with your claim.
+        
+      </div>
+      <div class="answers" style="margin-top:16px">
+        <a class="answer primary" href="tel:+12033896400">
+          <span><span class="k">Call NEC</span>We’ll walk you through it</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-next="summary">
+          <span><span class="k">Next</span>Show me where I stand</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-next="q5" data-open-checklist="1">
+          <span><span class="k">Checklist</span>Show my notes</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-scenario" data-go="q-scenario">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="br-deer" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Was it a deer or other animal?</h2>
+      <p class="hint">These claims are common in Connecticut.</p>
+      <div class="panel show">
+        <strong>Next step</strong>
+        Call NEC and we’ll walk you through photos, the claim, and where the car should go.
+        
+      </div>
+      <div class="answers" style="margin-top:16px">
+        <a class="answer primary" href="tel:+12033896400">
+          <span><span class="k">Call NEC</span>We’ll walk you through it</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-next="summary">
+          <span><span class="k">Next</span>Show me where I stand</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-next="q5" data-open-checklist="1">
+          <span><span class="k">Checklist</span>Show my notes</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-scenario" data-go="q-scenario">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="br-parked" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Was your parked car hit?</h2>
+      <p class="hint">You may not have met the other driver.</p>
+      <div class="panel show">
+        <strong>Next step</strong>
+        Call NEC and we’ll walk you through what to note—photos, plate if you have it, and the police report number.
+        
+      </div>
+      <div class="answers" style="margin-top:16px">
+        <a class="answer primary" href="tel:+12033896400">
+          <span><span class="k">Call NEC</span>We’ll walk you through it</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-next="summary">
+          <span><span class="k">Next</span>Show me where I stand</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-next="q5" data-open-checklist="1">
+          <span><span class="k">Checklist</span>Show my notes</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-scenario" data-go="q-scenario">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="q4" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>Has anyone told you where your car has to go?</h2>
+      <p class="hint">You’re allowed to choose. I’ll show you why.</p>
+      <div class="answers">
+        <button type="button" data-reveal="q4-rights">
+          <span><span class="k">Yes</span>The tow or insurer did</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-reveal="q4-rights">
+          <span><span class="k">No</span>No one has said</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <button type="button" data-reveal="q4-rights">
+          <span><span class="k">Not sure</span>I’m not clear yet</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div id="q4-rights" class="guidance" role="status">
+        <strong>Your rights in Connecticut</strong>
+        <ul>
+          <li>You have the right to choose the licensed repair shop that fixes your car (CGS 38a-354).</li>
+          <li>You can’t be required to use the tow company for repairs (CT DMV Towing Bill of Rights).</li>
+        </ul>
+        <p class="disclaimer">General info, not legal advice.</p>
+        <a class="continue" href="#summary" data-go="summary">Continue</a>
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q-scenario" data-go="q-scenario">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="q-objections" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <h2>What’s weighing on you?</h2>
+      <p class="hint">Tap whatever feels true. I’ll answer calmly.</p>
+      <div class="answers">
+        <button type="button" data-reveal="obj-insurer" data-fit="insurer">
+          <span><span class="k">Their shop</span>My insurer said to use their shop</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-reveal="obj-tow" data-fit="towyard">
+          <span><span class="k">Tow yard</span>It’s already at a tow yard</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-reveal="obj-choose" data-fit="choose">
+          <span><span class="k">Not sure</span>I’m not sure I can choose</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div id="obj-insurer" class="guidance" role="status">
+        <strong>You’re allowed to choose</strong>
+        You have the right to choose the licensed repair shop that fixes your car (CGS 38a-354). You can’t be required to use the tow company for repairs (CT DMV Towing Bill of Rights).
+        <p class="disclaimer">General info, not legal advice.</p>
+        <a class="continue" href="#summary" data-go="summary">Okay—show me where I stand</a>
+      </div>
+      <div id="obj-tow" class="guidance" role="status">
+        <strong>We can still help</strong>
+        You can have the car brought to NEC. You have the right to choose the licensed repair shop that fixes your car (CGS 38a-354). You can’t be required to use the tow company for repairs (CT DMV Towing Bill of Rights).
+        <p class="disclaimer">General info, not legal advice.</p>
+        <a class="continue" href="#summary" data-go="summary">Okay—show me where I stand</a>
+      </div>
+      <div id="obj-choose" class="guidance" role="status">
+        <strong>Yes—you can choose</strong>
+        You have the right to choose the licensed repair shop that fixes your car (CGS 38a-354). You can’t be required to use the tow company for repairs (CT DMV Towing Bill of Rights).
+        <p class="disclaimer">General info, not legal advice.</p>
+        <a class="continue" href="#summary" data-go="summary">Okay—show me where I stand</a>
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#summary" data-go="summary">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="summary" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <h2>Here’s where you stand</h2>
+      <p class="hint">I put this together from what you told me.</p>
+      <div class="summary-card" id="summary-card">
+        <div class="eyebrow">Your situation</div>
+        <h3 id="summary-title">You’re not alone in this.</h3>
+        <ul id="summary-list"></ul>
+        <div class="fit"><strong>Why NEC fits</strong><span id="summary-fit">A licensed body shop that’s been here since 1996—ready when you are.</span></div>
+      </div>
+      <div class="answers" style="margin-top:18px">
+        <button type="button" class="primary" data-next="close">
+          <span><span class="k">Next</span>I want a hand with this</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" data-next="q-objections">
+          <span><span class="k">Wait</span>I still have a concern</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q4" data-go="q4">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="close" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <h2>Want NEC to take it from here?</h2>
+      <p class="hint">You don’t have to carry this alone. Pick whatever feels easiest.</p>
+      <div class="close-ways answers">
+        <a class="answer primary" id="close-call" href="tel:+12033896400">
+          <span><span class="k">Call NEC</span>(203) 389-6400</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="answer" id="close-text-photos" href="#">
+          <span><span class="k">Text NEC</span>Send my notes &amp; photos</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="answer" id="close-callback" href="#">
+          <span><span class="k">Call me back</span>Have NEC call me</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <p class="after-hours-note" id="after-hours-note">We’re away from the desk right now (Mon–Fri 8:00 AM–4:30 PM). Text NEC your photos now—we’ll reply when we open. You can still call and leave a message.</p>
+      <p class="joe-sign">I’ve got you.<b>Joe, New England Collision</b></p>
+      <div class="obj-list">
+        <button type="button" data-go="q-objections">My insurer said to use their shop</button>
+        <button type="button" data-go="q-objections">It’s already at a tow yard</button>
+        <button type="button" data-go="q5">Not yet—show my checklist</button>
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#summary" data-go="summary">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="q5" class="screen">
+    <header class="compact">
+      <img class="logo" src="assets/nec-logo-on-brick.png" width="200" height="44" alt="New England Collision">
+      <div class="years">30 Years · 1996–2026</div>
+      <h1>After an Accident</h1>
+    </header>
+    <div class="q-body">
+      <div class="q-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <h2>Want a simple checklist first?</h2>
+      <p class="hint">No rush. Check what you have, then come back when you’re ready.</p>
+      <div class="answers">
+        <a class="answer primary" href="tel:+12033896400">
+          <span><span class="k">Yes</span>Call NEC now</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.3 3.75h2.05c.5 0 .93.34 1.05.82l.7 2.55c.1.4-.05.83-.39 1.1l-1.35 1.08a12.1 12.1 0 0 0 4.74 4.74l1.08-1.35c.27-.34.7-.5 1.1-.39l2.55.7c.48.13.82.55.82 1.05v2.05c0 .97-.79 1.75-1.76 1.66-2.55-.24-6.2-1.55-9.1-4.45-2.9-2.9-4.21-6.55-4.45-9.1-.09-.97.69-1.76 1.66-1.76z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button type="button" data-reveal="q5-checklist">
+          <span><span class="k">Not yet</span>Show my checklist</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div>
+      <div id="q5-reassure" class="reassure" role="status">
+        <div class="mark">You’re in good hands</div>
+        <p>Call when you’re ready. We’ll take it from there.</p>
+      </div>
+      <div id="q5-checklist" class="checklist" role="region" aria-label="My notes">
+        <div class="head">My notes</div>
+        <label class="check"><input type="checkbox" data-key="otherDriver"><span>Other driver name / phone</span></label>
+        <label class="check"><input type="checkbox" data-key="plate"><span>Other driver plate</span></label>
+        <label class="check"><input type="checkbox" data-key="insurance"><span>Other driver insurance</span></label>
+        <label class="check"><input type="checkbox" data-key="police"><span>Police report #</span></label>
+        <label class="check"><input type="checkbox" data-key="claim"><span>Insurance claim #</span></label>
+        <label class="check"><input type="checkbox" data-key="adjuster"><span>Adjuster name / phone</span></label>
+      </div>
+      <div class="q-foot">
+        <a class="back" href="#q4" data-go="q4">← Back</a>
+        <a class="q-call" href="tel:+12033896400">Or call NEC · (203) 389-6400</a>
+      </div>
+    </div>
+  </div>
+
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var CHECKLIST_KEY = 'nec-accident-checklist';
+  var PROGRESS_KEY = 'nec-accident-progress-v1';
+  var state = { year: null, damage: null, answers: {}, screen: 'home', savedAt: null, pinned: false, fit: null };
+  var transitioning = false;
+  var navQueue = null;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var SCREEN_LABELS = {
+    home: 'Home',
+    q1: 'Is everyone okay?',
+    'q-year': 'What year is your car?',
+    'q-damage': 'How bad does the damage look?',
+    'q-tl': 'Total loss mention',
+    'tl-where': 'Where should the car sit?',
+    'tl-protect': 'Brought to NEC',
+    'tl-look': 'Expert look',
+    q2: 'Safe to drive?',
+    q3: 'Photos',
+    'q-scenario': 'Anything else?',
+    'br-hitrun': 'Hit-and-run / uninsured',
+    'br-towyard': 'Tow yard',
+    'br-insurer': 'Insurer shop',
+    'br-rental': 'Rental',
+    'br-deer': 'Deer / animal',
+    'br-parked': 'Parked car',
+    q4: 'Where does the car have to go?',
+    q5: 'Checklist',
+    summary: 'Where you stand',
+    close: 'Want NEC to take it from here?',
+    'q-objections': 'What’s weighing on you?'
+  };
+
+  function loadProgress() {
+    try {
+      var raw = localStorage.getItem(PROGRESS_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) { return null; }
+  }
+  function persist(opts) {
+    opts = opts || {};
+    var prev = null;
+    try { prev = JSON.parse(localStorage.getItem(PROGRESS_KEY) || 'null'); } catch (e) { prev = null; }
+    prev = prev || {};
+    state.screen = opts.screen || state.screen || currentId();
+    state.savedAt = new Date().toISOString();
+    if (opts.pinned) state.pinned = true;
+    if (state.year == null && prev.year != null) state.year = prev.year;
+    if (state.damage == null && prev.damage != null) state.damage = prev.damage;
+    if (state.fit == null && prev.fit != null) state.fit = prev.fit;
+    if ((!state.answers || !Object.keys(state.answers).length) && prev.answers) state.answers = prev.answers;
+    if (!state.pinned && prev.pinned) state.pinned = true;
+    try {
+      localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+        screen: state.screen,
+        year: state.year,
+        damage: state.damage,
+        answers: state.answers || {},
+        savedAt: state.savedAt,
+        pinned: !!state.pinned,
+        fit: state.fit || null
+      }));
+    } catch (e) {}
+    updateResumeCard();
+    updateSaveButtons();
+  }
+  function clearProgress() {
+    state = { year: null, damage: null, answers: {}, screen: 'home', savedAt: null, pinned: false, fit: null };
+    try { localStorage.removeItem(PROGRESS_KEY); } catch (e) {}
+    updateResumeCard();
+    updateSaveButtons();
+  }
+  function currentId() {
+    var a = document.querySelector('.screen.active');
+    return a ? a.id : 'home';
+  }
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove('show'); }, 2600);
+  }
+  function recordAnswer(screenId, label) {
+    if (!screenId || screenId === 'home') return;
+    state.answers[screenId] = label;
+  }
+  function answerLabel(el) {
+    var k = el.querySelector('.k');
+    var full = (el.textContent || '').replace(/\s+/g, ' ').trim();
+    return k ? (k.textContent.trim() + ': ' + full.replace(k.textContent.trim(), '').trim()) : full;
+  }
+
+  function show(id, opts) {
+    opts = opts || {};
+    if (!document.getElementById(id)) id = 'home';
+    if (transitioning && !opts.force) { navQueue = { id: id, opts: opts }; return; }
+    var current = document.querySelector('.screen.active');
+    if (current && current.id === id && !opts.force) {
+      if (location.hash !== '#' + id) {
+        if (opts.replace) history.replaceState({ screen: id }, '', '#' + id);
+        else history.pushState({ screen: id }, '', '#' + id);
+      }
+      return;
+    }
+
+    function activate(target) {
+      document.querySelectorAll('.screen').forEach(function (s) {
+        s.classList.remove('active', 'is-in', 'is-out', 'settled');
+        if (s !== target) s.style.display = 'none';
+      });
+      target.style.display = 'flex';
+      target.classList.add('active', 'is-in');
+      window.scrollTo(0, 0);
+      state.screen = id;
+      if (!opts.skipSave) persist({ screen: id });
+      if (id === 'summary') refreshSummary();
+      if (id === 'close') { refreshSummary(); refreshCloseLinks(); applyAfterHours(); }
+      updateResumeCard();
+      setTimeout(function () {
+        target.classList.add('settled');
+        target.classList.remove('is-in');
+        transitioning = false;
+        updateResumeCard();
+        if (navQueue) {
+          var q = navQueue; navQueue = null;
+          show(q.id, Object.assign({}, q.opts || {}, { force: true }));
+        }
+      }, reduceMotion ? 160 : 320);
+    }
+
+    if (opts.replace) history.replaceState({ screen: id }, '', '#' + id);
+    else if (!opts.noHistory) {
+      if (location.hash !== '#' + id) history.pushState({ screen: id }, '', '#' + id);
+      else history.replaceState({ screen: id }, '', '#' + id);
+    }
+
+    if (!current || reduceMotion) {
+      transitioning = true;
+      activate(document.getElementById(id));
+      return;
+    }
+
+    transitioning = true;
+    current.classList.remove('is-in', 'settled');
+    current.classList.add('is-out');
+    var next = document.getElementById(id);
+    next.style.display = 'flex';
+    setTimeout(function () {
+      current.classList.remove('active', 'is-out');
+      current.style.display = 'none';
+      activate(next);
+    }, 300);
+  }
+
+  function updateResumeCard() {
+    var card = document.getElementById('resume-card');
+    if (!card) return;
+    try {
+      rehydrateFromStorage();
+      var prog = loadProgress();
+      var has = prog && prog.screen && prog.screen !== 'home' && (prog.pinned || (prog.answers && Object.keys(prog.answers).length > 0) || prog.year || prog.damage);
+      if (!has) {
+        card.classList.remove('show');
+        card.hidden = true;
+        return;
+      }
+      card.hidden = false;
+      card.removeAttribute('hidden');
+      card.classList.add('show');
+      var meta = document.getElementById('resume-meta');
+      var when = prog.savedAt ? new Date(prog.savedAt) : null;
+      var label = SCREEN_LABELS[prog.screen] || prog.screen;
+      var timeStr = '';
+      if (when && !isNaN(when.getTime())) {
+        timeStr = when.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+      }
+      if (meta) meta.textContent = 'Last on "' + label + '"' + (timeStr ? ' · ' + timeStr : '') + '.';
+      var sms = document.getElementById('resume-sms');
+      if (sms) {
+        try { sms.href = buildSmsHref(prog); } catch (e) {}
+      }
+    } catch (err) {
+      card.hidden = false;
+      card.removeAttribute('hidden');
+      card.classList.add('show');
+    }
+  }
+
+  function buildSmsHref(prog) {
+    prog = prog || loadProgress() || state;
+    var lines = ['NEC After an Accident — my notes', 'Call NEC (203) 389-6400'];
+    var ans = prog.answers || {};
+    Object.keys(ans).forEach(function (k) {
+      lines.push((SCREEN_LABELS[k] || k) + ': ' + ans[k]);
+    });
+    var url = location.href.split('#')[0] + '#resume';
+    lines.push(url);
+    return 'sms:?&body=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  function updateSaveButtons() {
+    var prog = loadProgress();
+    var pinned = prog && prog.pinned;
+    document.querySelectorAll('.save-btn').forEach(function (btn) {
+      btn.classList.toggle('saved', !!pinned);
+      btn.setAttribute('aria-pressed', pinned ? 'true' : 'false');
+      var lab = btn.querySelector('.save-label');
+      if (lab) lab.textContent = pinned ? 'Saved' : 'Save for later';
+    });
+  }
+
+  function isAfterHours() {
+    try {
+      var fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false });
+      var parts = fmt.formatToParts(new Date());
+      var map = {};
+      parts.forEach(function (p) { map[p.type] = p.value; });
+      var day = map.weekday;
+      var hour = parseInt(map.hour, 10);
+      var minute = parseInt(map.minute, 10);
+      if (map.hour === '24') hour = 0;
+      var mins = hour * 60 + minute;
+      var weekday = ['Mon','Tue','Wed','Thu','Fri'].indexOf(day) !== -1;
+      if (!weekday) return true;
+      return mins < (8 * 60) || mins >= (16 * 60 + 30);
+    } catch (e) { return false; }
+  }
+
+  function applyAfterHours() {
+    var ah = isAfterHours();
+    document.body.classList.toggle('after-hours', ah);
+    document.querySelectorAll('.sc-after').forEach(function (el) {
+      el.textContent = 'Text photos now—we reply when we open (Mon–Fri 8–4:30).';
+    });
+  }
+
+  function ensureStickyCalls() {
+    document.querySelectorAll('.screen').forEach(function (screen) {
+      if (screen.id === 'home') return;
+      if (screen.querySelector('.sticky-call')) return;
+      var bar = document.createElement('div');
+      bar.className = 'sticky-call';
+      bar.innerHTML = '<div class="sc-label"><strong>New England Collision</strong>Here if you need us</div>' +
+        '<div class="sc-after"></div>' +
+        '<a class="sc-btn" href="tel:+12033896400">Call</a>';
+      screen.insertBefore(bar, screen.firstChild);
+    });
+  }
+
+  function naturalAnswerLine(screenId, raw) {
+    var text = (raw || '').replace(/\s+/g, ' ').trim();
+    // Strip "KEY: rest" doubling from answerLabel()
+    var m = text.match(/^([^:]+):\s*(.*)$/);
+    var key = m ? m[1].trim().toLowerCase() : '';
+    var rest = m ? m[2].trim() : text;
+    // Prefer the human phrase after the key when present
+    var phrase = rest || text;
+
+    if (screenId === 'q1') {
+      if (/hurt|911/i.test(text)) return 'Someone may be hurt';
+      if (/not sure|quick check/i.test(text)) return 'Still checking that everyone is okay';
+      return "Everyone's okay";
+    }
+    if (screenId === 'q-year') {
+      if (state.year === 'new' || /2015|newer|late-model/i.test(text)) return 'Car is 2015 or newer';
+      if (state.year === 'old' || /older|before 2015/i.test(text)) return 'Car is older than 2015';
+      return "Not sure of the car's year yet";
+    }
+    if (screenId === 'q-damage') {
+      if (state.damage === 'major' || /major|airbag|not drivable/i.test(text)) return 'Damage looks major / not drivable';
+      if (state.damage === 'minor' || /minor|driveable|drivable/i.test(text)) return 'Damage looks minor';
+      return 'Not sure how bad the damage is yet';
+    }
+    if (screenId === 'q-tl') {
+      if (/^yes\b/i.test(key) || /mentioned it/i.test(text)) return 'Insurer mentioned a total loss';
+      if (/^no\b/i.test(key)) return "Insurer hasn't mentioned a total loss";
+      return "Too early to know about a total loss";
+    }
+    if (screenId === 'tl-where') {
+      if (/trust/i.test(text)) return 'You want it somewhere you trust';
+      if (/not sure|don.?t know/i.test(text)) return "Not sure yet where the car should sit";
+      return 'Tow or insurer suggested where it should sit';
+    }
+    if (screenId === 'q2') {
+      if (/^no\b/i.test(key) || /tow/i.test(text)) return 'Car needs a tow';
+      if (/not sure/i.test(text)) return 'Not sure if the car is safe to drive';
+      return 'Car can be driven';
+    }
+    if (screenId === 'q3') {
+      if (/not yet|show me what/i.test(text)) return 'Still need photos';
+      if (/can.?t right now/i.test(text)) return "Can't take photos right now";
+      return 'Photos are done';
+    }
+    if (screenId === 'q4') {
+      if (/^yes\b/i.test(key)) return 'Someone told you where the car has to go';
+      if (/not sure/i.test(text)) return "Not clear yet where the car has to go";
+      return "No one has said where the car has to go";
+    }
+    if (screenId.indexOf('br-') === 0 || screenId === 'q-objections' || screenId === 'q-scenario') {
+      return phrase.replace(/^[^:]+:\s*/, '');
+    }
+    // Skip pure navigation / meta screens
+    return '';
+  }
+
+  function buildAnswerSummaryLines() {
+    var lines = [];
+    var a = state.answers || {};
+    var skip = {
+      'tl-protect': 1, 'tl-look': 1, summary: 1, close: 1, home: 1, q5: 1,
+      'q-scenario': 1
+    };
+    // Year / damage first in plain words
+    if (state.year === 'new') lines.push('Car is 2015 or newer');
+    else if (state.year === 'old') lines.push('Car is older than 2015');
+    else if (state.year === 'unsure') lines.push("Not sure of the car's year yet");
+    if (state.damage === 'major') lines.push('Damage looks major / not drivable');
+    else if (state.damage === 'minor') lines.push('Damage looks minor');
+    else if (state.damage === 'unsure') lines.push('Not sure how bad the damage is yet');
+
+    Object.keys(a).forEach(function (k) {
+      if (skip[k] || k === 'q-year' || k === 'q-damage') return;
+      var line = naturalAnswerLine(k, a[k]);
+      if (line) lines.push(line);
+    });
+    // Dedupe while preserving order
+    var seen = {};
+    return lines.filter(function (l) {
+      if (seen[l]) return false;
+      seen[l] = 1;
+      return true;
+    });
+  }
+
+  function fitReason() {
+    var fit = state.fit || '';
+    if (state.year === 'new' && state.damage === 'major') fit = 'totalloss';
+    if (fit === 'totalloss') {
+      return 'For a late-model car with major damage, it helps to have it sit at a licensed body shop—not a tow yard—while things get sorted. NEC has been that shop in West Haven since 1996.';
+    }
+    if (fit === 'towyard') {
+      return 'If the car is already at a tow yard, you can still choose where it goes next. NEC can walk you through getting it to the shop you choose.';
+    }
+    if (fit === 'insurer' || fit === 'choose') {
+      return 'In Connecticut you have the right to choose your licensed repair shop. NEC is ready to help from West Haven.';
+    }
+    if (Object.keys(state.answers || {}).some(function (k) { return k.indexOf('br-') === 0; })) {
+      return 'Whatever path brought you here, you don’t have to sort it alone. Call or text NEC and we’ll walk you through the next step.';
+    }
+    return 'NEC is a licensed body shop at 465 Derby Ave, West Haven—here since 1996. One call and we’ll walk you through what comes next.';
+  }
+
+  function rehydrateFromStorage() {
+    var prog = loadProgress();
+    if (!prog) return;
+    if (state.year == null && prog.year != null) state.year = prog.year;
+    if (state.damage == null && prog.damage != null) state.damage = prog.damage;
+    if (state.fit == null && prog.fit != null) state.fit = prog.fit;
+    if ((!state.answers || !Object.keys(state.answers).length) && prog.answers) state.answers = prog.answers;
+    if (!state.pinned && prog.pinned) state.pinned = true;
+    if (prog.screen) state.screen = state.screen || prog.screen;
+  }
+
+  function refreshSummary() {
+    rehydrateFromStorage();
+    var list = document.getElementById('summary-list');
+    var title = document.getElementById('summary-title');
+    var fitEl = document.getElementById('summary-fit');
+    if (!list) return;
+    list.innerHTML = '';
+    var lines = buildAnswerSummaryLines();
+    if (!lines.length) {
+      lines = ['You started the guide—that’s enough for now.'];
+    }
+    lines.slice(0, 6).forEach(function (line) {
+      var li = document.createElement('li');
+      li.textContent = line;
+      list.appendChild(li);
+    });
+    if (state.year === 'new' && state.damage === 'major') {
+      title.textContent = 'This may need a careful look before anyone calls it a total loss.';
+    } else {
+      title.textContent = 'You’re not alone in this.';
+    }
+    fitEl.textContent = fitReason();
+    refreshCloseLinks();
+  }
+
+  function smsBody(kind) {
+    var lines = [];
+    if (kind === 'callback') {
+      lines.push('Please call me back about my car.');
+    } else {
+      lines.push('Hi NEC — sending my accident notes.');
+    }
+    buildAnswerSummaryLines().forEach(function (l) { lines.push(l); });
+    lines.push('From the After an Accident guide.');
+    return lines.join('\n');
+  }
+
+  function refreshCloseLinks() {
+    rehydrateFromStorage();
+    var photos = document.getElementById('close-text-photos');
+    var cb = document.getElementById('close-callback');
+    var bodyPhotos = smsBody('photos');
+    var bodyCb = smsBody('callback');
+    if (photos) photos.href = 'sms:+12033896400?&body=' + encodeURIComponent(bodyPhotos);
+    if (cb) cb.href = 'sms:+12033896400?&body=' + encodeURIComponent(bodyCb);
+  }
+
+  function ensureSaveButtons() {
+    document.querySelectorAll('.screen').forEach(function (screen) {
+      if (screen.id === 'home') return;
+      var body = screen.querySelector('.q-body');
+      if (!body || body.querySelector('.save-bar')) return;
+      var bar = document.createElement('div');
+      bar.className = 'save-bar';
+      bar.innerHTML = '<button type="button" class="save-btn" aria-label="Save for later">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h10a1.5 1.5 0 0 1 1.5 1.5v14l-6.5-3.4L5.5 20V6A1.5 1.5 0 0 1 7 4.5z"/></svg>' +
+        '<span class="save-label">Save for later</span></button>';
+      var progress = body.querySelector('.q-progress');
+      if (progress) progress.insertAdjacentElement('afterend', bar);
+      else body.insertBefore(bar, body.firstChild);
+    });
+  }
+
+  function pressThen(el, fn) {
+    el.classList.add('is-pressing');
+    setTimeout(function () {
+      el.classList.remove('is-pressing');
+      fn();
+    }, reduceMotion ? 0 : 140);
+  }
+
+  document.querySelectorAll('[data-go]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      pressThen(el, function () { show(el.getAttribute('data-go')); });
+    });
+  });
+  document.querySelectorAll('[data-next]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      pressThen(el, function () {
+        if (el.getAttribute('data-year')) state.year = el.getAttribute('data-year');
+        if (el.getAttribute('data-damage')) state.damage = el.getAttribute('data-damage');
+        if (el.getAttribute('data-fit')) state.fit = el.getAttribute('data-fit');
+        recordAnswer(currentId(), answerLabel(el));
+        if (el.getAttribute('data-open-checklist')) {
+          show('q5');
+          var c = document.getElementById('q5-checklist');
+          var r = document.getElementById('q5-reassure');
+          if (c) c.classList.add('show');
+          if (r) r.classList.add('show');
+          persist({ screen: 'q5' });
+          return;
+        }
+        show(el.getAttribute('data-next'));
+      });
+    });
+  });
+  document.querySelectorAll('[data-route="after-damage"]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      pressThen(el, function () {
+        state.damage = el.getAttribute('data-damage');
+        recordAnswer(currentId(), answerLabel(el));
+        if (state.year === 'new' && state.damage === 'major') show('q-tl');
+        else show('q2');
+      });
+    });
+  });
+  document.querySelectorAll('[data-reveal]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      pressThen(el, function () {
+        if (el.getAttribute('data-fit')) state.fit = el.getAttribute('data-fit');
+        recordAnswer(currentId(), answerLabel(el));
+        persist({ screen: currentId() });
+        var id = el.getAttribute('data-reveal');
+        var panel = document.getElementById(id);
+        if (panel) {
+          panel.classList.add('show');
+          panel.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+        }
+        if (id === 'q5-checklist') {
+          var r = document.getElementById('q5-reassure');
+          if (r) r.classList.add('show');
+        }
+      });
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.save-btn');
+    if (!btn) return;
+    e.preventDefault();
+    state.pinned = true;
+    persist({ screen: currentId(), pinned: true });
+    toast("Saved. It'll be here when you come back.");
+  });
+
+  var resumeContinue = document.getElementById('resume-continue');
+  if (resumeContinue) {
+    resumeContinue.addEventListener('click', function (e) {
+      e.preventDefault();
+      var prog = loadProgress();
+      if (!prog) return;
+      state.year = prog.year;
+      state.damage = prog.damage;
+      state.answers = prog.answers || {};
+      state.pinned = !!prog.pinned;
+      state.fit = prog.fit || null;
+      show(prog.screen || 'home', { force: true });
+    });
+  }
+  var resumeRestart = document.getElementById('resume-restart');
+  if (resumeRestart) {
+    resumeRestart.addEventListener('click', function () {
+      clearProgress();
+      toast('Starting fresh.');
+      show('home', { replace: true, force: true, skipSave: true });
+    });
+  }
+
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(CHECKLIST_KEY) || '{}') || {}; } catch (e) {}
+  document.querySelectorAll('.check input').forEach(function (inp) {
+    var k = inp.getAttribute('data-key');
+    if (saved[k]) inp.checked = true;
+    inp.addEventListener('change', function () {
+      saved[k] = inp.checked;
+      try { localStorage.setItem(CHECKLIST_KEY, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+
+  function onHashNav() {
+    var id = (location.hash || '#home').slice(1) || 'home';
+    if (id === 'resume') {
+      var prog = loadProgress();
+      if (prog && prog.screen) id = prog.screen;
+      else id = 'home';
+    }
+    if (!document.getElementById(id)) id = 'home';
+    show(id, { noHistory: true, force: true, skipSave: true });
+    if (id === 'summary' || id === 'close') { refreshSummary(); refreshCloseLinks(); }
+  }
+  window.addEventListener('popstate', onHashNav);
+  window.addEventListener('hashchange', onHashNav);
+
+  ensureSaveButtons();
+  ensureStickyCalls();
+  applyAfterHours();
+  var existing = loadProgress();
+  if (existing) {
+    state.year = existing.year;
+    state.damage = existing.damage;
+    state.answers = existing.answers || {};
+    state.pinned = !!existing.pinned;
+    state.savedAt = existing.savedAt;
+    state.fit = existing.fit || null;
+  }
+  updateResumeCard();
+  updateSaveButtons();
+
+  var hash = (location.hash || '#home').slice(1);
+  if (hash === 'resume' && existing && existing.screen) {
+    show(existing.screen, { replace: true, force: true, skipSave: true });
+  } else if (document.getElementById(hash)) {
+    show(hash, { replace: true, force: true, skipSave: true });
+  } else {
+    show('home', { replace: true, force: true, skipSave: true });
+  }
+  if (existing && hash && hash !== 'home' && hash !== 'resume') {
+    state.screen = hash;
+    persist({ screen: hash });
+  }
+  if (hash === 'summary' || hash === 'close') { refreshSummary(); refreshCloseLinks(); }
+  setTimeout(function () { updateResumeCard(); applyAfterHours(); }, 0);
+})();
+
+</script>
+</body>
+</html>
